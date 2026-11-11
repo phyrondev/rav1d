@@ -9,6 +9,7 @@ use crate::include::common::bitdepth::BPC;
 use crate::include::common::intops::iclip;
 use crate::include::dav1d::picture::Rav1dPictureDataComponentOffset;
 use crate::src::align::AlignedVec64;
+use crate::src::c_ffi::ptrdiff_t;
 use crate::src::cpu::CpuFlags;
 use crate::src::cursor::CursorMut;
 use crate::src::disjoint_mut::DisjointMut;
@@ -17,7 +18,6 @@ use crate::src::strided::Strided as _;
 use crate::src::tables::dav1d_sgr_x_by_x;
 use crate::src::wrap_fn_ptr::wrap_fn_ptr;
 use bitflags::bitflags;
-use libc::ptrdiff_t;
 use std::cmp;
 use std::ffi::c_int;
 use std::ffi::c_uint;
@@ -963,7 +963,7 @@ mod neon {
 
     use crate::include::common::bitdepth::bd_fn;
     use crate::src::align::Align16;
-    use libc::intptr_t;
+    use crate::src::c_ffi::intptr_t;
     use std::ptr;
 
     wrap_fn_ptr!(unsafe extern "C" fn wiener_filter_h(

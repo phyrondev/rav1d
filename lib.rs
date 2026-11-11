@@ -33,6 +33,7 @@ pub mod src {
     pub(crate) mod assume;
     pub(crate) mod c_arc;
     pub(crate) mod c_box;
+    pub(crate) mod c_ffi;
     mod cdef;
     mod cdef_apply;
     mod cdf;

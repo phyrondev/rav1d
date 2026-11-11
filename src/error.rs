@@ -1,3 +1,4 @@
+use crate::src::c_ffi;
 use std::ffi::c_int;
 use std::ffi::c_uint;
 use strum::FromRepr;
@@ -17,13 +18,13 @@ pub enum Rav1dError {
     /// which is more optimal since `0` is no error for [`Dav1dResult`].
     EGeneric = 1,
 
-    ENOENT = libc::ENOENT as u8,
-    EIO = libc::EIO as u8,
-    EAGAIN = libc::EAGAIN as u8,
-    ENOMEM = libc::ENOMEM as u8,
-    EINVAL = libc::EINVAL as u8,
-    ERANGE = libc::ERANGE as u8,
-    ENOPROTOOPT = libc::ENOPROTOOPT as u8,
+    ENOENT = c_ffi::ENOENT as u8,
+    EIO = c_ffi::EIO as u8,
+    EAGAIN = c_ffi::EAGAIN as u8,
+    ENOMEM = c_ffi::ENOMEM as u8,
+    EINVAL = c_ffi::EINVAL as u8,
+    ERANGE = c_ffi::ERANGE as u8,
+    ENOPROTOOPT = c_ffi::ENOPROTOOPT as u8,
 }
 
 pub type Rav1dResult<T = ()> = Result<T, Rav1dError>;

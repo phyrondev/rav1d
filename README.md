@@ -87,6 +87,22 @@ The following targets are currently supported:
 * `aarch64-unknown-linux-gnu`
 * `riscv64gc-unknown-linux-gnu`
 
+## WebAssembly
+
+`wasm32-unknown-unknown` has no `libc` port, so `rav1d` provides the few C
+types and `errno` values it needs from one place, `src/c_ffi.rs`, which uses
+`libc` on every other target. Only the library supports this target; the
+`dav1d` and `seek_stress` tools need POSIX file I/O, so select just the
+library and disable the default `asm` feature, which has no meaning here:
+
+```sh
+cargo build -p rav1d --target wasm32-unknown-unknown \
+    --no-default-features --features="bitdepth_8,bitdepth_16"
+```
+
+There is no thread support either: set `n_threads` to `1` in
+`Rav1dSettings`, and `rav1d` decodes on the calling thread.
+
 ## Running Tests
 
 Currently we use the original [Meson](https://mesonbuild.com/) test suite for
