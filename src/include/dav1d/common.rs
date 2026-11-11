@@ -1,6 +1,7 @@
 use std::ptr::NonNull;
 
 use crate::c_arc::{CArc, RawCArc};
+use crate::c_ffi;
 
 #[derive(Default)]
 #[repr(C)]
@@ -35,7 +36,7 @@ impl From<Rav1dUserData> for Dav1dUserData {
 pub struct Dav1dDataProps {
     pub timestamp: i64,
     pub duration: i64,
-    pub offset: libc::off_t,
+    pub offset: c_ffi::off_t,
     pub size: usize,
     pub user_data: Dav1dUserData,
 }
